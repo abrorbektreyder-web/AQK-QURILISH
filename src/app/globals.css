@@ -557,6 +557,13 @@ a:hover {
     padding: 1.5rem 2rem;
   }
 
+  .sec-intro,
+  .sec-services,
+  .sec-partner,
+  .sec-cta {
+    padding: 6rem 2.5rem;
+  }
+
   .nav-links {
     display: none;
   }
@@ -647,6 +654,116 @@ a:hover {
   .footer-bottom {
     margin-top: 4rem;
   }
+
+  /* Hamburger Icon */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 3000;
+    /* Above mobile menu */
+    position: relative;
+    padding: 10px;
+    margin-right: -10px;
+    /* Offset padding */
+  }
+
+  .bar {
+    width: 28px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .bar.open:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .bar.open:nth-child(2) {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  /* Mobile Menu Container */
+  .mobile-menu {
+    display: flex;
+    /* Reset from none if it was */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-dark);
+    z-index: 900;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .mobile-links a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--text-white);
+    text-transform: uppercase;
+  }
+
+  .mobile-lang {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .ml-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text-muted-dark);
+    text-transform: uppercase;
+  }
+
+  .ml-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .ml-buttons button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .ml-buttons button.active {
+    background: var(--text-white);
+    color: var(--bg-dark);
+    border-color: var(--text-white);
+  }
+}
+
+@media (min-width: 1025px) {
+  .hamburger {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -670,6 +787,29 @@ a:hover {
   }
 
   .sc-image {
-    height: 280px;
+    height: 250px;
+  }
+
+  .intro-title,
+  .partner-title {
+    font-size: 2rem;
+  }
+
+  .intro-text,
+  .partner-desc {
+    font-size: 1.1rem;
+  }
+
+  .sc-num {
+    font-size: 2.5rem;
+  }
+
+  .sc-desc {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .sc-title {
+    font-size: 1.8rem;
   }
 }

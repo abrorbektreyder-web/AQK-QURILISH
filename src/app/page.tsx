@@ -111,6 +111,7 @@ const translations = {
 export default function Home() {
   const [langOpen, setLangOpen] = useState(true);
   const [currentLang, setCurrentLang] = useState('uz');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const t = translations[currentLang as keyof typeof translations];
 
@@ -167,7 +168,39 @@ export default function Home() {
           <a href="#biz-haqimizda">{t.navAbout}</a>
           <a href="#boglanish">{t.navContact}</a>
         </div>
+        {/* Mobile Hamburger */}
+        <div className="hamburger" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
+          <div className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
+        </div>
       </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, y: '-100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-100%' }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="mobile-links">
+              <a href="#xizmatlar" onClick={() => setIsMobileMenuOpen(false)}>{t.navFeatures}</a>
+              <a href="#biz-haqimizda" onClick={() => setIsMobileMenuOpen(false)}>{t.navAbout}</a>
+              <a href="#boglanish" onClick={() => setIsMobileMenuOpen(false)}>{t.navContact}</a>
+            </div>
+            <div className="mobile-lang">
+              <span className="ml-title">{t.langSelectTitle}</span>
+              <div className="ml-buttons">
+                <button className={currentLang === 'uz' ? 'active' : ''} onClick={() => { setCurrentLang('uz'); setIsMobileMenuOpen(false); }}>UZ</button>
+                <button className={currentLang === 'ru' ? 'active' : ''} onClick={() => { setCurrentLang('ru'); setIsMobileMenuOpen(false); }}>RU</button>
+                <button className={currentLang === 'en' ? 'active' : ''} onClick={() => { setCurrentLang('en'); setIsMobileMenuOpen(false); }}>EN</button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* SECTION 1: HERO */}
       <section className="hero">
