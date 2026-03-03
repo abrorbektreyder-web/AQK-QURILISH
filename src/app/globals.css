@@ -1,321 +1,675 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-dark: #0A0A0A;
-  --bg-light: #F5F5F7;
-  --accent-blue: #0062E6;
+  --bg-cream: #EFEEEA;
+  --bg-dark: #121212;
+  --bg-card: #1C1C1C;
+
   --text-white: #FFFFFF;
-  --text-gray: #A1A1A6;
+  --text-dark: #111111;
+  --text-muted-dark: rgba(255, 255, 255, 0.6);
+  --text-muted-light: rgba(0, 0, 0, 0.6);
+
+  --color-01: #E53935;
+  /* Red */
+  --color-02: #43A047;
+  /* Green */
+  --color-03: #1E88E5;
+  /* Blue */
+
   --font-main: 'Inter', sans-serif;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html,
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-white);
   font-family: var(--font-main);
-  scroll-behavior: smooth;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  transition: opacity 0.3s;
 }
 
-li {
-  list-style: none;
+a:hover {
+  opacity: 0.7;
 }
 
-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-family: inherit;
-  color: inherit;
-}
-
-/* NAVBAR */
+/* =========================================
+   NAVBAR 
+   ========================================= */
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 2rem 4rem;
+  padding: 2.5rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
   mix-blend-mode: difference;
+  color: #fff;
 }
 
 .nav-brand {
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .nav-links {
   display: flex;
   gap: 3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .nav-links a {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: color 0.3s;
+  color: #ffffff !important;
+  opacity: 1 !important;
 }
 
-.nav-links a:hover {
-  color: var(--accent-blue);
-}
-
-/* HERO */
+/* =========================================
+   SECTION 1: HERO (Image 1) 
+   ========================================= */
 .hero {
-  height: 100vh;
-  width: 100vw;
   position: relative;
+  height: 100vh;
+  width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2500&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
-.hero-bg {
+/* Dark overlay to make text readable */
+.hero::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.4);
-  z-index: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .hero-content {
   position: relative;
   z-index: 10;
   text-align: center;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 8rem);
+  font-family: system-ui, -apple-system, sans-serif;
+  /* Wide, clean font matching original */
+  font-size: clamp(4rem, 16vw, 19vw);
   font-weight: 900;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 0.82;
   letter-spacing: -2px;
-  margin-bottom: 1rem;
+
+  /* The Glass Text Effect */
+  background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2500&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: brightness(1.6) contrast(1.1) saturate(1.2);
+  /* Brighten same image to look like glass reflection */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  /* Slight shine on edge */
+
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  color: var(--text-gray);
-  letter-spacing: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 12px;
   text-transform: uppercase;
-  font-weight: 300;
-}
-
-/* SECTION EXPERTISE */
-.expertise {
-  padding: 10rem 4rem;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--bg-dark);
-}
-
-.expertise-bg-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 15vw;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.02);
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.expertise-content {
-  position: relative;
-  z-index: 10;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.expertise-content h2 {
-  font-size: clamp(2rem, 4vw, 4rem);
-  margin-bottom: 2rem;
-  font-weight: 700;
-}
-
-.expertise-content .stat {
-  font-size: 4rem;
-  color: var(--accent-blue);
-  font-weight: 900;
+  color: #ffffff;
   margin-top: 1rem;
 }
 
-/* SERVICES */
-.services {
-  padding: 5rem 4rem;
-  background-color: var(--bg-light);
-  color: #1D1D1F;
+/* =========================================
+   SECTION 2: QUALITÄT (Image 2) - Cream
+   ========================================= */
+.sec-intro {
+  background-color: var(--bg-cream);
+  padding: 10rem 4rem 5rem 4rem;
 }
 
-.service-item {
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.intro-title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.intro-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+.intro-text span {
+  color: var(--text-muted-light);
+}
+
+.intro-bottom {
+  max-width: 1600px;
+  margin: 8rem auto 0 auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 2rem;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 4rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
+  justify-content: flex-start;
+  gap: 15rem;
 }
 
-.service-item:hover {
-  transform: translateX(20px);
-}
-
-.service-num {
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--accent-blue);
-  width: 10%;
-}
-
-.service-title {
-  font-size: 3rem;
-  font-weight: 800;
+.intro-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  width: 40%;
+  color: var(--text-muted-light);
 }
 
-.service-desc {
-  width: 30%;
-  font-size: 1.1rem;
-  color: #555;
-  line-height: 1.6;
+.intro-value {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.service-link {
-  width: 20%;
-  text-align: right;
+/* =========================================
+   SECTION 3: SERVICES (Images 3, 4, 5) - Dark
+   ========================================= */
+.sec-services {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  padding: 10rem 4rem;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 8rem;
+}
+
+.sh-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted-dark);
+  margin-bottom: 1.5rem;
+}
+
+.sh-title {
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 400;
+  /* Danielbau uses thinner weight for this heading */
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.cards-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.s-card {
+  background-color: var(--bg-card);
+  display: flex;
+  border-radius: 4px;
+  /* subtle curve if any */
+  overflow: hidden;
+  height: 600px;
+}
+
+.sc-content {
+  width: 45%;
+  padding: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sc-num {
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.num-01 {
+  color: var(--color-01);
+}
+
+.num-02 {
+  color: var(--color-02);
+}
+
+.num-03 {
+  color: var(--color-03);
+}
+
+.sc-title {
+  font-size: 2.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
 }
 
-.service-link::after {
-  content: '→';
-  transition: transform 0.3s;
+.sc-sub {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted-dark);
+  margin-bottom: 4rem;
 }
 
-.service-item:hover .service-link::after {
-  transform: translateX(10px);
+.sc-desc {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #B0B0B0;
+  margin-bottom: 4rem;
 }
 
-/* CTA */
-.cta {
-  height: 80vh;
+.sc-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-white);
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: var(--bg-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+  width: max-content;
+  transition: all 0.3s;
 }
 
-.cta p {
-  color: var(--text-gray);
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+.sc-link:hover {
+  border-bottom-color: #fff;
+}
+
+.sc-image {
+  width: 55%;
+  height: 100%;
+}
+
+.sc-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================
+   SECTION 4: PARTNER (Image 6) - Cream
+   ========================================= */
+.sec-partner {
+  background-color: var(--bg-cream);
+  padding: 10rem 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partner-title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -1px;
   margin-bottom: 2rem;
 }
 
-.cta h2 {
-  font-size: clamp(4rem, 12vw, 12rem);
-  font-weight: 900;
-  color: var(--text-white);
-  transition: color 0.3s;
-  cursor: pointer;
+.partner-desc {
+  max-width: 800px;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-muted-light);
+  margin-bottom: 4rem;
 }
 
-.cta h2:hover {
-  color: var(--accent-blue);
+.partner-desc strong {
+  color: var(--text-dark);
+  font-weight: 500;
 }
 
-/* FOOTER */
-.footer {
-  padding: 4rem;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: var(--bg-dark);
+.partner-line {
+  width: 1px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-.footer-col {
+/* =========================================
+   SECTION 5: FOOTER/CTA (Image 7) - BG Image
+   ========================================= */
+.sec-cta {
+  background-image: url('https://images.unsplash.com/photo-1628012198051-50e8bc799971?q=80&w=2500&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 10rem 4rem 4rem 4rem;
+  text-align: center;
+  color: #fff;
+}
+
+.sec-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.85);
+  /* Very dark overlay */
+}
+
+.cta-content {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
 }
 
-.footer-brand {
-  font-size: 2.5rem;
-  font-weight: 900;
+.cta-sub {
+  position: absolute;
+  top: -3.8rem;
+  /* Pushing down further to hit the baseline of the navbar links exactly */
+  /* Precisely aligned with menu items baseline */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted-dark);
 }
 
-.footer-info {
-  color: var(--text-gray);
-  font-size: 0.9rem;
-  line-height: 1.6;
+.cta-title {
+  font-size: clamp(5rem, 12vw, 15rem);
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 4rem;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
+.cta-contact {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 10rem;
+}
 
+.cta-contact a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.footer-bottom {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--text-muted-dark);
+  text-transform: uppercase;
+}
+
+/* =========================================
+   LANGUAGE PANEL 
+   ========================================= */
+.lang-panel {
+  position: fixed;
+  right: 0;
+  top: 15vh;
+  background-color: #F0EEEA;
+  /* Brighter, premium cream matching Danielbau */
+  border-radius: 8px 0 0 8px;
+  /* Rounded only on the left since it is stuck to the right edge */
+  width: 260px;
+  padding: 1.5rem;
+  z-index: 2000;
+  box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.1);
+  color: var(--text-dark);
+}
+
+.lang-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.lang-title {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+}
+
+.lang-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text-muted-light);
+  line-height: 1;
+  padding: 0 5px;
+  transition: color 0.2s;
+}
+
+.lang-close:hover {
+  color: var(--text-dark);
+}
+
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  transition: all 0.2s;
+  color: var(--text-muted-light);
+  font-family: inherit;
+}
+
+.lang-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: var(--text-dark);
+}
+
+.lang-btn.active {
+  background-color: #ffffff;
+  font-weight: 700;
+  color: var(--text-dark);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.lang-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #0062E6;
+  /* Danielbau blue dot */
+  margin-right: 12px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 1024px) {
   .navbar {
     padding: 1.5rem 2rem;
   }
 
-  .service-item {
-    flexDirection: column;
-    gap: 1rem;
-    padding: 2rem 0;
+  .nav-links {
+    display: none;
   }
 
-  .service-num,
-  .service-title,
-  .service-desc,
-  .service-link {
-    width: 100%;
-    textAlign: left;
+  .hero-title {
+    font-size: 15vw;
+    line-height: 1;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
   }
 
-  .service-link {
-    justifyContent: flex-start;
-    margin-top: 1rem;
+  .hero-subtitle {
+    font-size: 0.75rem;
+    padding: 0 1rem;
+    text-align: center;
   }
 
-  .footer {
-    flexDirection: column;
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .intro-title {
+    font-size: 2.5rem;
+  }
+
+  .intro-bottom {
     gap: 3rem;
-    padding: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sh-title {
+    font-size: 2.5rem;
+  }
+
+  .s-card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sc-content {
+    width: 100%;
+    padding: 3rem 2rem;
+  }
+
+  .sc-title {
+    font-size: 2rem;
+  }
+
+  .sc-image {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    top: 0;
+  }
+
+  .sc-image img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+  }
+
+  .cta-title {
+    font-size: 3rem;
+  }
+
+  .cta-sub {
+    top: -4rem;
+    /* Adjusted for mobile */
+    font-size: 0.65rem;
+    width: 90%;
+    text-align: center;
+  }
+
+  .cta-contact {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .lang-panel {
+    display: none;
+    /* Auto-hide for minimalist mobile view */
+  }
+
+  .footer-bottom {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 18vw;
+  }
+
+  .sec-intro,
+  .sec-services,
+  .sec-partner,
+  .sec-cta {
+    padding: 4rem 1.5rem;
+  }
+
+  .sh-title {
+    font-size: 2.2rem;
+  }
+
+  .cta-title {
+    font-size: 2.5rem;
+  }
+
+  .sc-image {
+    height: 280px;
   }
 }
